@@ -3,6 +3,6 @@ import React from 'react';
 
 
 
-export default function newButton () {
+export default function NewButton () {
   return <Button/>
 }

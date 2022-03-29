@@ -69,7 +69,7 @@ export default function NewButton(props: Props) {
   
   //return <Pressable column={'test'} ></Pressable>;
   return <Pressable {...props}>
-    <Text > Custom Component </Text>
+    <Text > NewButton (Pressable Text in View) </Text>
   </Pressable>;
 }
 

@@ -9,5 +9,5 @@ import NewButton from '../../../components/NewButton'
 storiesOf('NewButton', module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   .add('New Button', () => (
-   <NewButton onPress={console.log("hello")}/>
+   <NewButton onPressIn={()=> console.log('onPressIn')} onPress = {()=>console.log('onPress')} onPressOut={()=>console.log('onPressOut')} onLongPress={()=> console.log("onLongPress")}/>
   ));

@@ -1,10 +1,31 @@
-import { PressableProps, Button, NativeSyntheticEvent, NativeTouchEvent, Pressable, View, StatusBar,TextInput ,TextInputComponent} from "react-native";
+import { PressableProps, Button, NativeSyntheticEvent, NativeTouchEvent, Pressable, View, StatusBar,TextInput ,TextInputComponent, Text, AccessibilityRole, GestureResponderEvent} from "react-native";
 import React from "react";
-
-
-
-type AProps = React.ForwardRefExoticComponent<PressableProps & React.RefAttributes<View>> | {
-  // onPress?: (ev: NativeSyntheticEvent<NativeTouchEvent>) => void;
+{/* <View style={styles.container}>
+<Pressable
+  onPress={() => {
+    setTimesPressed((current) => current + 1);
+  }}
+  style={({ pressed }) => [
+    {
+      backgroundColor: pressed
+        ? 'rgb(210, 230, 255)'
+        : 'white'
+    },
+    styles.wrapperCustom
+  ]}>
+  {({ pressed }) => (
+    <Text style={styles.text}>
+      {pressed ? 'Pressed!' : 'Press Me'}
+    </Text>
+  )}
+</Pressable>
+<View style={styles.logBox}> */}
+// Number[]
+// Array<Number>
+// type AProps = React.ForwardRefExoticComponent<PressableProps & React.RefAttributes<View>> | {
+  interface Props extends PressableProps {
+  onPress?: (ev: NativeSyntheticEvent<NativeTouchEvent>) => void;
+  onPressIn?: (event: GestureResponderEvent) => void;
   banana?: string;
   accessible?: boolean;
   accessibilityLabel?: string;
@@ -13,7 +34,7 @@ type AProps = React.ForwardRefExoticComponent<PressableProps & React.RefAttribut
   accessibilityIgnoresInvertColors?: boolean; //iOS Only. Light sensitiviity.
   /**Android*/
   accessibilityLiveRegion?: "none" | "polite" | "assertive";
-  accessibilityRole?: string;
+  accessibilityRole?: AccessibilityRole;
   accessibilityState?: {
     //Describes the current state of a component to the user of an assistive technology.
     disabled?: boolean; //Indicates whether the element is disabled or not.
@@ -31,9 +52,9 @@ type AProps = React.ForwardRefExoticComponent<PressableProps & React.RefAttribut
     text?: string; //A textual description of this component's value. Will override min, now, and max if set.
   };
   /**iOS*/
-  accessibilityViewIsModal?: Boolean;
+  accessibilityViewIsModal?: boolean;
   /**iOS*/
-  accessibilityElementsHidden?: Boolean;
+  accessibilityElementsHidden?: boolean;
   /**Android*/
   importantForAccessibility?: "auto" | "yes" | "no" | "no-hide-descendants";
   /**iOS*/
@@ -44,9 +65,11 @@ type AProps = React.ForwardRefExoticComponent<PressableProps & React.RefAttribut
   onMagicTap?: () => void;
 }
 
-export default function NewButton(props: AProps) {
+export default function NewButton(props: Props) {
   
-  return <Pressable />;
-  
+  //return <Pressable column={'test'} ></Pressable>;
+  return <Pressable {...props}>
+    <Text > Custom Component </Text>
+  </Pressable>;
 }
 

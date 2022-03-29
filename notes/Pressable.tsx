@@ -1,5 +1,5 @@
 //! Definitions for <Pressable>
-
+//
 //* node_modules/@types/react/index.d.ts
 interface ExoticComponent<P = {}> {
         /**

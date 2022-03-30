@@ -1,66 +1,71 @@
-import React, { useState } from 'react';
-import { TextInput, View, Text, StyleSheet } from 'react-native';
-import NewButton from './NewButton';
-
+import React, { useState , useEffect} from 'react';
+import { TextInput, View, Text, StyleSheet, ViewProps } from 'react-native';
+interface Props extends ViewProps {
+  setCredentialsAreSubmittable?: (bool: boolean)=> void;
+}
 const editableTextInputColor = '#494949';
 const disabledTextInputColor = '#BBB';
 const focusedInputColor = 'green'
 const minimumTouchableSize = 48;
-const AccessibleTextInput = () => {
-  const [value, setValue] = useState('')
-  const [passwordValue, setPasswordValue] = useState('')
+const AccessibleTextInput = (props: Props) => {
+  const {setCredentialsAreSubmittable} = props
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [editable, setEditable] = useState(true)
-  const [isFocused, setFocus] = useState(false)
-  const [passwordFocus, setPasswordFocus] = useState(false)
+  const [usernameIsFocused, setUsernameIsFocused] = useState(false)
+  const [passwordIsFocused, setPasswordIsFocused] = useState(false)
   const textInputColor = editable ? editableTextInputColor : disabledTextInputColor;
-  const styles = StyleSheet.create({
-    label: { color: (isFocused || passwordFocus) ? focusedInputColor : textInputColor },
+  const accessibilityState = { disabled: !editable }
+  const styles_1 = StyleSheet.create({
+    label: { color: (usernameIsFocused || passwordIsFocused) ? focusedInputColor : textInputColor },
     input: {
       backgroundColor: '#FFF',
       padding: 8,
       height: minimumTouchableSize,
       width: '100%',
-      borderColor: isFocused ? focusedInputColor : textInputColor,
-      borderWidth: isFocused ? 2 : 1,
+      borderColor: usernameIsFocused ? focusedInputColor : textInputColor,
+      borderWidth: usernameIsFocused ? 2 : 1,
       borderRadius: 4,
       marginTop: 8 
     }
 });
-const styles2 = StyleSheet.create({
+const styles_2 = StyleSheet.create({
     input: {
-        borderColor: (passwordFocus ? focusedInputColor : textInputColor),
-        borderWidth: passwordFocus ? 2 : 1,
-
+        borderColor: (passwordIsFocused ? focusedInputColor : textInputColor),
+        borderWidth: passwordIsFocused ? 2 : 1,
     }
 });
-  const accessibilityState = { disabled: !editable }
+  useEffect(() => {
+    //read states and set credentialsAreSubmittable
+    if(setCredentialsAreSubmittable) setCredentialsAreSubmittable((username && password) ? true : false);
+  });
+  
   return (
     <View   
       accessible
       accessibilityLabel="Enter username and password"
       accessibilityState={accessibilityState}>
-      <Text style={styles.label}>Login</Text>
+      <Text style={styles_1.label}>Login</Text>
       <TextInput
-         style = {styles.input}
+         style = {styles_1.input}
          placeholder="Username"
          placeholderTextColor={textInputColor}
-         value={value}
-         onChangeText={(text) => setValue(text)}
+         value={username}
+         onChangeText={(text) => setUsername(text)}
          editable={editable}
-         onFocus={() => setFocus(true)}
-         onBlur={() => setFocus(false)}
+         onFocus={() => setUsernameIsFocused(true)}
+         onBlur={() => setUsernameIsFocused(false)}
       />
         <TextInput
-         style = {[styles.input, styles2.input]}
+         style = {[styles_1.input, styles_2.input]}
          placeholder="Password"
          placeholderTextColor={textInputColor}
-         value={passwordValue}
-         onChangeText={(text) => setPasswordValue(text)}
+         value={password}
+         onChangeText={(text) => setPassword(text)}
          editable={editable}
-         onFocus={() => setPasswordFocus(true)
+         onFocus={() => setPasswordIsFocused(true)
         }
-         onBlur={() => setPasswordFocus(false)}
-
+         onBlur={() => setPasswordIsFocused(false)}
       />
     </View>
   )

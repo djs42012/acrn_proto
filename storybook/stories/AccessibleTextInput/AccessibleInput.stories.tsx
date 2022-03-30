@@ -5,15 +5,11 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import CenterView from '../CenterView';
 import AccessibleTextInput from '../../../components/AccessibleTextInput'; 
-import NewButton from '../../../components/NewButton';
+import NewButton from '../../../components/NewButton'; 
+import LoginContainer from '../../../containers/LoginContainer';
 
 storiesOf('AccessibleTextInput', module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   .add('Accessible Text input', () => (
-      <>
-        <AccessibleTextInput/>
- 
-        <NewButton accessibilityElementsHidden = {true} importantForAccessibility = 'no-hide-descendants'/>
-      </>
-        
+    <LoginContainer/>
   ));

@@ -9,7 +9,6 @@ const minimumTouchableSize = 48;
 const AccessibleTextInput = () => {
   const [value, setValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
-
   const [editable, setEditable] = useState(true)
   const [isFocused, setFocus] = useState(false)
   const [passwordFocus, setPasswordFocus] = useState(false)

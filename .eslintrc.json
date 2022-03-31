@@ -6,6 +6,7 @@
     "extends": [
         "plugin:react/recommended",
         "airbnb",
+        "airbnb-typescript",
         "eslint:recommended",
         "plugin:node/recommended",
         "prettier"
@@ -25,5 +26,11 @@
         "prettier"
     ],
     "rules": {
+        "node/no-unsupported-features/es-syntax": [
+            "error",
+            { "ignores": ["modules"]}
+        ],
+        "react/jsx-props-no-spreading": "off",
+        "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }]
     }
 }

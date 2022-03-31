@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import AccessibleTextInput from '../components/AccessibleTextInput';
 import NewButton from '../components/NewButton';
 
-const LoginContainer = () => {
+function LoginContainer() {
     const[credentialsAreSubmittable, setCredentialsAreSubmittable] = useState(false);
     return (
               <View>
@@ -16,6 +16,6 @@ const LoginContainer = () => {
         />
     </View>
     )
-};
+}
 
 export default LoginContainer;

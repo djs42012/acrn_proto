@@ -1,5 +1,6 @@
 import React, { useState , useEffect} from 'react';
 import { TextInput, View, Text, StyleSheet, ViewProps } from 'react-native';
+
 interface Props extends ViewProps {
   setCredentialsAreSubmittable?: (bool: boolean)=> void;
 }
@@ -9,7 +10,7 @@ const disabledTextInputColor = '#BBB';
 const focusedInputColor = 'green'
 const minimumTouchableSize = 48;
 
-const AccessibleTextInput = (props: Props) => {
+function AccessibleTextInput(props: Props) {
   const {setCredentialsAreSubmittable} = props
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -41,7 +42,7 @@ const AccessibleTextInput = (props: Props) => {
   });
 
   useEffect(() => {
-    if(setCredentialsAreSubmittable) setCredentialsAreSubmittable((username && password) ? true : false);
+    if(setCredentialsAreSubmittable) setCredentialsAreSubmittable(!!((username && password)));
   });
   
   return (
@@ -73,6 +74,6 @@ const AccessibleTextInput = (props: Props) => {
       />
     </View>
   )
-};
+}
 
 export default AccessibleTextInput;

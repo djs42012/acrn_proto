@@ -3,7 +3,7 @@ import { View, ViewProps } from 'react-native';
 import ExternalUrl from '../components/ExternalUrl';
 // TODO: Create InternalLink Component
 
-type url = [a: string, b: string];
+export type url = [a: string, b: string]; //first index is page name, second is url
 
 // * example for url type
 // const urls: url[] = [['a','b'], ['d', 'd']];
@@ -18,11 +18,7 @@ function NavigationContainer(props: Props) {
   const externalUrls: JSX.Element[] = [];
   for (let i = 0; i < props.externalUrls.length; i++) {
     externalUrls.push(
-      <ExternalUrl
-        title={props.externalUrls[i][0]}
-        url={props.externalUrls[i][1]}
-        accessibilityRole="menuitem"
-      />
+      <ExternalUrl url={props.externalUrls[i]} accessibilityRole="menuitem" />
     );
   }
   return (

@@ -5,7 +5,4 @@ import LoginContainer from '../../../src/containers/LoginContainer';
 
 storiesOf('AccessibleTextInput', module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add('Accessible Text input', () => (
-    <LoginContainer/>
-  )
-);
+  .add('Accessible Text input', () => <LoginContainer />);

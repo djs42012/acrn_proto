@@ -1,17 +1,21 @@
 import React from 'react';
-import { Pressable, PressableProps, Text } from 'react-native';
+import { Pressable, PressableProps, Text, Linking, Alert } from 'react-native';
+import { url } from '../containers/NavigationContainer';
 
 interface Props extends PressableProps {
-  title: string;
-  url: string;
+  url: url;
 }
 
+const handlePress = async (url: string): Promise<any> => {
+  const supported = await Linking.canOpenURL(url);
+  supported ? await Linking.openURL(url) : Alert.alert(`Cannot open ${url}`);
+};
+
 function ExternalUrl(props: Props) {
-  const { url, title } = props;
+  const { url } = props;
   return (
-    <Pressable accessibilityRole="link">
-      <Text> {title} </Text>
-      // TODO: Redirect to {url} somehow
+    <Pressable accessibilityRole="link" onPress={() => handlePress(url[1])}>
+      <Text> {url[0]} </Text>
     </Pressable>
   );
 }

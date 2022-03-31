@@ -21,7 +21,11 @@ function NavigationContainer(props: Props) {
   const externalUrls: JSX.Element[] = [];
   for (let i = 0; i < props.externalUrls.length; i++) {
     externalUrls.push(
-      <ExternalUrl url={props.externalUrls[i]} accessibilityRole="menuitem" />
+      <ExternalUrl
+        key={`url ${i}`}
+        url={props.externalUrls[i]}
+        accessibilityRole="menuitem"
+      />
     );
   }
   return (

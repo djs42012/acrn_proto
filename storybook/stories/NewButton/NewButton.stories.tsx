@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import { Text } from 'react-native';
 import CenterView from '../CenterView';
-import NewButton from '../../../components/NewButton'
+import NewButton from '../../../src/components/NewButton';
 
 storiesOf('NewButton', module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)

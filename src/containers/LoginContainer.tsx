@@ -6,7 +6,7 @@ import NewButton from '../components/NewButton';
 const LoginContainer = () => {
     const[credentialsAreSubmittable, setCredentialsAreSubmittable] = useState(false);
     return (
-     <View>
+              <View>
         <AccessibleTextInput     
             setCredentialsAreSubmittable = {(bool: boolean):void => {setCredentialsAreSubmittable(bool)}}
         />
